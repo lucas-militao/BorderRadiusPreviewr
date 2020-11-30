@@ -9,39 +9,70 @@ export default function App() {
   const [ topRightRadiusValue, setTopRightRadiusValue ]  = useState('');
   const [ bottomLeftRadiusValue, setBottomLeftRadiusValue ] = useState('');
   const [ bottomRightRadiusValue, setBottomRightRadiusValue ] = useState('');
+
+  const [ height, setHeight ] = useState('');
+  const [ width, setWidth ] = useState('');
+
   const [ divRectangle, setDivRectangle ] = useState({});
 
   function handleBorderRadius() {
-    setTopLeftRadiusValue('');
-    setTopRightRadiusValue('');
-    setBottomLeftRadiusValue('');
-    setBottomRightRadiusValue('');
+    setDivRectangle({
+      height: `${height}`,
+      width: `${width}`,
+      borderRadius: `${topLeftRadiusValue}px ${topRightRadiusValue}px ${bottomLeftRadiusValue}px ${bottomRightRadiusValue}px`
+    })
+  }
+
+  function handleSize() {
+    setDivRectangle({
+      height: `${height}`,
+      width: `${width}`,
+      borderRadius: `${topLeftRadiusValue}px ${topRightRadiusValue}px ${bottomLeftRadiusValue}px ${bottomRightRadiusValue}px`
+    })
   }
 
   return (
     <>
-      <div id='rectangle'>
-      </div>
+      <div className="container">
+        <div id='rectangle' style={divRectangle}>
+        </div>
 
-      <Form 
-        type="submit"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleBorderRadius();
-        }}
-        style={divRectangle}>
-        <Form.Label >Raio desejado</Form.Label>
-        <Form.Control type="text" value={topLeftRadiusValue} onChange={ event => setTopLeftRadiusValue(event.target.value) }/>
-        <Form.Control type="text" value={topRightRadiusValue} onChange={ event => setTopRightRadiusValue(event.target.value) }/>
-        <Form.Control type="text" value={bottomLeftRadiusValue} onChange={ event => setBottomLeftRadiusValue(event.target.value) }/>
-        <Form.Control type="text" value={bottomRightRadiusValue} onChange={ event => setBottomRightRadiusValue(event.target.value) }/>
-        <Button type="submit">Mudar</Button>
-      </Form>
+        <Form 
+          className="borderRadiusForm"
+          type="submit"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleBorderRadius();
+          }}
+        >
+          <Form.Label id="radiusLabel">Raio desejado</Form.Label>
 
-      <div className="sizeInputs">
-        <label>Rectangle`s Size</label>
-        <input type="text" id="height"/>
-        <input type="text" id="width"/>
+          <div className="borderRadiusInputs">
+            <Form.Control id="topLeftRadius" type="text" value={topLeftRadiusValue} onChange={ event => setTopLeftRadiusValue(event.target.value) }/>
+            <Form.Control id="topRightRadius" type="text" value={topRightRadiusValue} onChange={ event => setTopRightRadiusValue(event.target.value) }/>
+            <Form.Control id="bottomLeftRadius" type="text" value={bottomLeftRadiusValue} onChange={ event => setBottomLeftRadiusValue(event.target.value) }/>
+            <Form.Control id="bottomRightRadius" type="text" value={bottomRightRadiusValue} onChange={ event => setBottomRightRadiusValue(event.target.value) }/>
+          </div>
+          
+          <Button type="submit">Mudar Raio</Button>
+        </Form>
+
+        <Form className="SizeForm"
+          type="submit"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSize();
+          }}>
+
+          <Form.Label>Tamanho do Retangulo</Form.Label>
+
+          <div className="sizeInputs">
+            <Form.Control type="text" value={height} onChange={ event => setHeight(event.target.value) } placeholder="altura"/>
+            <Form.Control type="text" value={width} onChange={ event => setWidth(event.target.value) } placeholder="largura"/>
+          </div>
+
+          <Button type="submit">Mudar Tamanho</Button>
+        </Form>
       </div>
     </>
   )
