@@ -1,10 +1,22 @@
+label {
+  margin: 5px 5px 5px 0;
+}
+
+input {
+  margin: 5px 5px 5px 0;
+}
+
+button {
+  margin: 0 0 5px 0;
+}
+
 .container {
   display: block;
   position: absolute; 
   top: 50%;    
   left: 50%;
   margin-right: -50%;
-  transform: translate(-50%, -50%) 
+  transform: translate(-50%, -50%); 
 }
 
 #rectangle {
@@ -15,7 +27,8 @@
   border-radius: 0px 0px 0px 0px;
   display: block;
   margin-left: auto;
-  margin-right: auto 
+  margin-right: auto;
+  margin-bottom: 5px;
 }
 
 #radiusLabel {
@@ -24,4 +37,15 @@
 
 .borderRadiusInputs {
   display: block;
+  margin: 10px 0 10px 0;
 }
+
+.sizeInputs {
+  display: block;
+  margin: 10px 0 10px 0;
+}
+
+.cssContainer {
+  display: block;
+}
+
